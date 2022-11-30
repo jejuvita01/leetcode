@@ -1,13 +1,12 @@
 class Solution {
 public:
     vector<int> runningSum(vector<int>& nums) {
-        vector<int> new_nums;
-        for (int i = 0; i < nums.size(); i++) {
-            int sum = 0;
-            for (int j = 0; j <= i; j++)
-                sum += nums.at(j);
-            new_nums.push_back(sum);
+        vector<int>::iterator it;
+        it = nums.begin() + 1;
+        for (int i = 1; i < nums.size(); i++) {
+            *it = nums.at(i - 1) + nums.at(i);
+            it++;
         }
-        return new_nums;
+        return nums;
     }
 };
