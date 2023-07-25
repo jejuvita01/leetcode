@@ -1,15 +1,22 @@
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-        int mag[26] = { 0 };
-        for (int i = 0; i < magazine.length(); i++)
-            mag[magazine[i] - 'a']++;
-        for (int i = 0; i < ransomNote.length(); i++) {
-            if (mag[ransomNote[i] - 'a'] == 0)
-                return false;
+        int r, m;
+        int same;
+
+        sort(ransomNote.begin(), ransomNote.end());
+        sort(magazine.begin(), magazine.end());
+        
+        r = m = same = 0;
+        for (; r < ransomNote.length() && m < magazine.length();) {
+            if (m < magazine.length() && ransomNote[r] == magazine[m]) {
+                r++;
+                m++;
+                same++;
+            }
             else
-                mag[ransomNote[i] - 'a']--;
+                m++;
         }
-        return true;
+        return (same == ransomNote.length());
     }
 };
