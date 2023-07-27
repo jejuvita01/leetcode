@@ -16,7 +16,6 @@ public:
                 for (int j = i + 1; j < strs.size(); j++) {
                     if (change[i].compare(change[j]) == 0 && exist.find(j) == exist.end()) {
                         tmp.push_back(strs[j]);
-                        strs[j] = "";
                         exist.insert(j);
                     }
                 }
